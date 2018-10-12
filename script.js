@@ -70,18 +70,20 @@ function updateStatus(){
     dealerPoints = updatePoints(dealerCards);
     playerPoints = updatePoints(playerCards);
     
-    let dealerCardsString = "";
+    let dealerCardsString = "<ol>";
     for (let i = 0; i < dealerCards.length; i++) {
-        dealerCardsString += getCardString(dealerCards[i]) + '\n';
+        dealerCardsString += "<li>" + getCardString(dealerCards[i]) + "</li>";
     }
+    dealerCardsString += "</ol>";
 
-    let playerCardsString = "";
+    let playerCardsString = "<ol>";
     for (let i = 0; i < playerCards.length; i++) {
-        playerCardsString += getCardString(playerCards[i]) + '\n';
+        playerCardsString += "<li>" + getCardString(playerCards[i]) + "</li>";
     }
+    playerCardsString += "</ol>";
 
-    textArea.innerText = "Dealer cards:\n" + dealerCardsString + "Points: " + dealerPoints + 
-        "\n\nPlayer cards:\n" + playerCardsString + "Points: " + playerPoints;
+    textArea.innerHTML = "Dealer cards:" + dealerCardsString + "Points: " + dealerPoints + 
+        "<br/><br/>Player cards:" + playerCardsString + "Points: " + playerPoints;
 }
 
 function getCardString(card){
@@ -109,25 +111,26 @@ stayBtn.addEventListener('click', function(){
     }
     updateStatus();
     if(dealerPoints > 21 || dealerPoints < playerPoints){
-        textArea.innerText += "\n PLAYER WON";
+        textArea.innerHTML += "<br/>PLAYER WON";
     }
     else{
-        textArea.innerText += "\n DEALER WON";
+        textArea.innerHTML += "<br/>DEALER WON";
     }
     newGameBtn.style.display = 'inline';
     hitBtn.style.display = 'none';
     stayBtn.style.display = 'none';
+    
 })
 
 function checkForGameOver(){
     if (playerPoints > 21){
-        textArea.innerText += "\n DEALER WON"
+        textArea.innerHTML += "<br/>DEALER WON"
         newGameBtn.style.display = 'inline';
         hitBtn.style.display = 'none';
         stayBtn.style.display = 'none';
     }
     if (playerPoints === 21){
-        textArea.innerText += "\n PLAYER WON"
+        textArea.innerHTML += "<br/>PLAYER WON"
         newGameBtn.style.display = 'inline';
         hitBtn.style.display = 'none';
         stayBtn.style.display = 'none';
